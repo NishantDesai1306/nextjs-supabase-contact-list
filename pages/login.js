@@ -7,8 +7,6 @@ export default function LoginPage() {
   const router = useRouter();
   const { supabaseClient } = useSessionContext();
   const user = useUser();
-
-  console.log('supabaseClient', supabaseClient)
   
   useEffect(() => {
     if (user) {
