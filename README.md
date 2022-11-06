@@ -4,6 +4,6 @@
 
 It demonstrates
 
-1. Supabase's built in support for auth
+1. Supabase's built in support for auth (used as route guard as well)
 2. integration with Supbase acting as BaaS
 3. integration with Supabase's file storage service
