@@ -7,12 +7,12 @@ import Navbar from "../components/Navbar";
 export default function ContactsPage() {
   return (
     <ContactsApiProvider>
-      <div className="w-full h-full bg-gray-300">
+      <div className="w-full h-full bg-gray-300 flex flex-col">
         <Navbar />
 
         <div
-          className="w-full h-full flex flex-col justify-center items-center p-4"
-          style={{ minWidth: 250, maxWidth: 600, margin: "auto" }}
+          className="w-full flex-grow flex flex-col items-center p-4 mt-16 mx-auto"
+          style={{ minWidth: 250, maxWidth: 600 }}
         >
           <ContactList />
         </div>

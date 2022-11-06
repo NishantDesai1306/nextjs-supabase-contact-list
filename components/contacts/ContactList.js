@@ -53,18 +53,26 @@ export default function Contacts() {
         onConfirm={updateContactFn}
       />
       
-      <div className="bg-white shadow overflow-hidden rounded-md">
-        <ul>
-          {contacts.map((contact) => (
-            <Contact
-              key={contact.id}
-              contact={contact}
-              onUpdate={() => setContactToUpdate(contact)}
-              onDelete={() => deleteContact.mutate(contact.id)}
-            />
-          ))}
-        </ul>
-      </div>
+      {
+        contacts.length > 0 ? (
+          <div className="bg-white shadow overflow-hidden rounded-md">
+            <ul>
+              {contacts.map((contact) => (
+                <Contact
+                  key={contact.id}
+                  contact={contact}
+                  onUpdate={() => setContactToUpdate(contact)}
+                  onDelete={() => deleteContact.mutate(contact.id)}
+                />
+              ))}
+            </ul>
+          </div>
+        ) : (
+          <div className="text-center text-gray-500 mt-8">
+            No contacts found.
+          </div>
+        )
+      }
     </div>
   );
 }
