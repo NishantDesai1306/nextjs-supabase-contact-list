@@ -27,7 +27,7 @@ export default function ContactsApiProvider({ children }) {
     const extension = imageFile.name.split('.').pop();
     const fileName = `${contact.id}.${extension}`;
 
-    const { data, error } = await supabase
+    const { data: uploadedPicture, error } = await supabase
       .storage
       .from('profile')
       .upload(fileName, imageFile, {
@@ -40,20 +40,31 @@ export default function ContactsApiProvider({ children }) {
       throw new Error(error.message);
     }
 
-    // if existing image was different then remove it
-    if (contact.picture !== fileName) {
-      debugger;
+    // if user has changed the profile picture then remove old one
+    if (contact.picture instanceof File) {
+      // load current contact's record from db 
+      const { data: contactFromDB, error } = await supabase
+        .from("contacts")
+        .select("*")
+        .eq("id", contact.id)
+        .single();
+
+      if (error) {
+        console.log(error);
+      }
+      
+      // remove old picture from db
       const { error: removeError } = await supabase
         .storage
         .from('profile')
-        .remove([`/${contact.picture}`]);
+        .remove([contactFromDB.picture]);
 
       if (removeError) {
         console.log(removeError);
       }
     }
 
-    contact.picture = data.path;
+    contact.picture = uploadedPicture.path;
 
     return contact;
   }, [supabase]);
@@ -128,10 +139,8 @@ export default function ContactsApiProvider({ children }) {
       createdContact.picture = contact.picture;
 
       // this will upload the picture and update contact in database
-      debugger;
       const finalContact = await updateContactAPI(createdContact);
 
-      debugger;
       return finalContact;
     }
 
