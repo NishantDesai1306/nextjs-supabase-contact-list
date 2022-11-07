@@ -23,4 +23,7 @@ export default function ContactsPage() {
 
 export const getServerSideProps = withPageAuth({
   redirectTo: "/login",
+  cookieOptions: {
+    name: process.env.NEXT_PUBLIC_COOKIE_NAME,
+  }
 });

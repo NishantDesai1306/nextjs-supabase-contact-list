@@ -20,5 +20,8 @@ export default function TodoPage() {
 }
 
 export const getServerSideProps = withPageAuth({
-  redirectTo: "/login"
+  redirectTo: "/login",
+  cookieOptions: {
+    name: process.env.NEXT_PUBLIC_COOKIE_NAME,
+  },
 });

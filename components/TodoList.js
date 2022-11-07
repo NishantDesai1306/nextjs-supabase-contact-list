@@ -18,9 +18,7 @@ export default function Todos() {
   return (
     <div className="w-full">
       <div className="flex justify-between items-center">
-        <div>
-          <h1 className="mb-4">Todo List.</h1>
-        </div>
+        <div className="mb-4 text-3xl">Todo List</div>
 
         {
           isLoading && (

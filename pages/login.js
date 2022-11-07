@@ -23,7 +23,7 @@ export default function LoginPage() {
   return (
     <div className="w-full h-full bg-gray-300">
       <div className="w-full h-full flex justify-center items-center p-4">
-        <div class="card flex flex-col justify-center p-10 bg-white rounded-lg shadow-2xl">
+        <div className="card flex flex-col justify-center p-10 bg-white rounded-lg shadow-2xl">
           <div className="text-center text-4xl mb-8">
             Authentication
           </div>

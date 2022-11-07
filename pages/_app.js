@@ -7,10 +7,18 @@ import {
 } from '@tanstack/react-query'
 import "../styles/index.css";
 
-const queryClient = new QueryClient()
+const queryClient = new QueryClient();
 
 export default function MyApp({ Component, pageProps }) {
-  const supabaseClient = useMemo(() => createBrowserSupabaseClient(), []);
+  const supabaseClient = useMemo(() => createBrowserSupabaseClient({
+    cookieOptions: {
+      name: process.env.NEXT_PUBLIC_COOKIE_NAME,
+      secure: true,
+      path: "/",
+      sameSite: "lax",
+      maxAge: 24 * 60 * 60,
+    }
+  }), []);
 
   return (
     <SessionContextProvider

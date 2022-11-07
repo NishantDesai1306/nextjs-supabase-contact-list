@@ -25,8 +25,8 @@ export default function Contacts() {
   return (
     <div className="w-full">
       <div className="flex justify-between items-center">
-        <div>
-          <h1 className="mb-4">Contacts List.</h1>
+        <div className="mb-4 text-3xl">
+          Contacts List
         </div>
 
         {
